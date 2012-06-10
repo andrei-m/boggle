@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import sys
 import re
 
 class TrieNode:
@@ -58,4 +59,12 @@ def BoggleWords(grid, dict):
                     visited2.append((x2, y2))
                     queue.append((x2, y2, s2, node2, visited2))
     return words
-                    
+
+if __name__ == '__main__':
+    grid = []
+    for line in open(sys.argv[1]).readlines():
+        grid.append(line.rstrip())
+    dict = MakeTrie('/usr/share/dict/words')
+    print BoggleWords(grid, dict)
+
+
