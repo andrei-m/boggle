@@ -64,6 +64,19 @@ class BoggleTests(unittest.TestCase):
         # 'adda' is excluded, since it requires reusing the 'a'
         self.assertEquals(set(['add']), words)
 
+    def testRealDict(self):
+        """Test a realistic board with a real dictionary"""
+        grid = ['uqrt', 'pteu', 'lern', 'ebso']
+        self.dict = boggle.MakeTrie('/usr/share/dict/words')
+        words = boggle.BoggleWords(grid, self.dict)
+        # test a few words
+        self.assertTrue('tern' in words)
+        self.assertTrue('tuner' in words)
+        self.assertTrue('tuners' in words)
+        # Assert that all words are 3 characters or longer
+        shortWords = filter(lambda word: len(word) < 3, words)
+        self.assertEquals([], shortWords)
+
 if __name__ == '__main__':
     unittest.main()
 

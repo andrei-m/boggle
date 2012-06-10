@@ -16,10 +16,11 @@ def MakeTrie(dictfile):
        containing a 'q' not followed by a 'u'"""
     dict = open(dictfile)
     root = TrieNode(None, '')
-    regex = re.compile('.*q[^u].*')
+    q_not_u = re.compile('.*q[^u].*')
+    nonalphabetic = re.compile('[\W_]+')
     for word in dict:
-        word = word.rstrip()
-        if len(word) >= 3 and not regex.match(word):
+        word = re.sub(nonalphabetic, '', word)
+        if len(word) >= 3 and not q_not_u.match(word):
             # Let 'q' represent 'qu'
             word = word.replace('qu', 'q')
             curNode = root
