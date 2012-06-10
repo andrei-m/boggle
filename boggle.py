@@ -36,11 +36,11 @@ def BoggleWords(grid, dict):
     """Find all words from dict that can be constructed from the given grid"""
     rows, cols = len(grid), len(grid[0])
     queue = []
-    words = []
+    words = set()
     for y in range(cols):
         for x in range(rows):
             c = grid[y][x]
-            node = dict.children(ord(c) - 97)
+            node = dict.children[ord(c) - 97]
             if node is not None:
                 queue.append((x, y, c, node)) #TODO: a fifth element is needed to keep track of which positions in the grid have been visited to construct the prefix c
     while queue:
@@ -53,7 +53,7 @@ def BoggleWords(grid, dict):
                 node2 = node.children[ord(grid[y2][x2]) - 97]
                 if node2 is not None:
                     if node2.isWord:
-                        words.append(s2)
+                        words.add(s2)
                     queue.append((x2, y2, s2, node2))
     return words
                     
