@@ -42,10 +42,10 @@ class TrieParseTests(unittest.TestCase):
 
 class BoggleTests(unittest.TestCase):
     """Tests for finding words given a grid and word trie"""
-    
+
     def setUp(self):
         self.dict = boggle.MakeTrie('testdict.txt')
-    
+
     def testQuad(self):
         grid = ['qu', 'ad']
         words = boggle.BoggleWords(grid, self.dict)
