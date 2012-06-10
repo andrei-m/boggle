@@ -48,9 +48,9 @@ def BoggleWords(grid, dict):
         for dx, dy in ((1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1)):
             x2, y2 = x + dx, y + dy
             if 0 <= x2 < cols and 0 <= y2 < rows and (x2, y2) not in visited:
-                s2 = s + grid[y2][x2]
                 node2 = node.children[ord(grid[y2][x2]) - 97]
                 if node2 is not None:
+                    s2 = s + grid[y2][x2]
                     if node2.isWord:
                         words.add(s2)
                     visited2 = list(visited)
